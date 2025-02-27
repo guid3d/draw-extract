@@ -16,6 +16,12 @@ function resizeCanvas() {
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas(); // Initial resize
 
+// **Prevent Scrolling & Pull-to-Refresh**
+document.addEventListener("touchmove", (e) => {
+    if (isDrawing) e.preventDefault(); // Disable scrolling while drawing
+}, { passive: false });
+
+
 canvas.addEventListener("pointerdown", startDrawing);
 canvas.addEventListener("pointermove", draw);
 canvas.addEventListener("pointerup", stopDrawing);
